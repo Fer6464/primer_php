@@ -14,10 +14,10 @@ class EjemploController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { echo("Olaaaaaaa");
-      $proyectos=DB::table('proyectos')->get();
-      return view("projects/index",'proyectos'->$proyectos)
-        //
+    { 
+      $ejemplos=DB::table('ejemplos')->get();
+      return view("projects/index",'ejemplos'->$ejemplos);
+        
     }
 
     /**

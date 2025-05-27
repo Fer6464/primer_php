@@ -6,7 +6,7 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   </head>
-<body>
+<body style="background-color:white;">
     <div class="container text-center">
         <div class="row">
             <div class="col">
@@ -48,30 +48,77 @@
                 </nav>
             </div>
         </div>
-  <div class="row">
-    <div class="col">
-      1 of 3
-    </div>
-    <div class="col">
-      <table>
+   <div class="row">
+        <div class="col-sm-2">
+            <a href="example/create">
+                <button style="background-color:#106cfc; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Insertar ejemplo</button> 
+            </a>
+        </div>
+        <div class="col-10">
+            
+            <style>
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    font-family: sans-serif;
+                }
+
+                th, td {
+                    border: 1px solid #ccc;
+                    padding: 12px;
+                    text-align: left;
+                }
+
+               /* td{
+                    color: white;
+                } */
+
+                th {
+                    background-color: #f0f0f0;
+                }
+
+                tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+            </style>
+            <table>
                 <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Creado en</th>
+                        <th>Actualizar/Eliminar</th>
+                    </tr>
                 </thead>
-                <tbody>
-                    @foreach($ejemplos as $proyecto)
-                        <tr>
-                            <td scope="row">{{ $proyecto->id }}</td>
-                            <td>{{ $proyecto->titulo }}</td>
-                            <td>{{ $proyecto->descripcion }}</td>
-                            <td>{{ $proyecto->created_at }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
+                    <tbody>
+                        @foreach($ejemplos as $proyecto)
+                            <tr>
+                                <td scope="row">{{ $proyecto->id }}</td>
+                                <td>{{ $proyecto->nombre }}</td>
+                                <td>{{ $proyecto->descripcion }}</td>
+                                <td>{{ $proyecto->created_at }}</td>
+                                <td><a href="{{ url('example/' . $proyecto->id . '/edit') }}">
+                                        <button style="background-color:#106cfc; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Modificar</button> 
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
             </table>
-    </div>
-  </div>
+        </div>
+   </div>
     <div class="row">
     <div class="col">
-      1 of 3
+      <figure>
+      <br>
+      <blockquote class="blockquote">
+        <p>Mi primer proyecto de php.</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        <cite title="Source Title">Copyright de Fer.</cite><br>
+      </figcaption>
+    </figure>
     </div>
   </div>
 </div>

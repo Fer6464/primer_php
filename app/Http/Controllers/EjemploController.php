@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ejemplo;
+use App\Models\Ejemplos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,8 +15,8 @@ class EjemploController extends Controller
      */
     public function index()
     { 
-      $ejemplos=DB::table('ejemplos')->get();
-      return view("projects/index",'ejemplos'->$ejemplos);
+      $ejemplo=DB::table('ejemplos')->get();
+      return view('projects/index',['ejemplos'=>$ejemplo]);
         
     }
 
@@ -27,7 +27,7 @@ class EjemploController extends Controller
      */
     public function create()
     {
-        //
+        return view("projects/new");
     }
 
     /**
@@ -38,16 +38,18 @@ class EjemploController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Ejemplos::create($request->all());
+        return redirect('example/')
+            ->with('success', 'Ejemplo creado correctamente.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ejemplo  $ejemplo
+     * @param  \App\Models\Ejemplos  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function show(Ejemplo $ejemplo)
+    public function show(Ejemplos $ejemplo)
     {
         //
     }
@@ -55,22 +57,23 @@ class EjemploController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ejemplo  $ejemplo
+     * @param  \App\Models\Ejemplos  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ejemplo $ejemplo)
+    public function edit(Ejemplos $ejemplo)
     {
-        //
+        $ejemplo=Ejemplos::find($id);
+        return view('projects/update',compact('ejemplo'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ejemplo  $ejemplo
+     * @param  \App\Models\Ejemplos  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ejemplo $ejemplo)
+    public function update(Request $request, Ejemplos $ejemplo)
     {
         //
     }
@@ -78,10 +81,10 @@ class EjemploController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ejemplo  $ejemplo
+     * @param  \App\Models\Ejemplos  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ejemplo $ejemplo)
+    public function destroy(Ejemplos $ejemplo)
     {
         //
     }

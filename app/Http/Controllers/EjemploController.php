@@ -43,7 +43,12 @@ class EjemploController extends Controller
             ->with('success', 'Ejemplo creado correctamente.');
     }
 
-    /**
+    public function ver_updt()
+    {
+        return view("projects/update");
+    } 
+ 
+     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Ejemplos  $ejemplo
@@ -60,10 +65,10 @@ class EjemploController extends Controller
      * @param  \App\Models\Ejemplos  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ejemplos $ejemplo)
+    public function edit($id)
     {
         $ejemplo=Ejemplos::find($id);
-        return view('projects/update',compact('ejemplo'));
+        return view('projects/update', compact('ejemplo'));
     }
 
     /**
@@ -73,9 +78,15 @@ class EjemploController extends Controller
      * @param  \App\Models\Ejemplos  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ejemplos $ejemplo)
+    public function update(Request $request, $id)
     {
-        //
+       /* $request -> validate([
+            'titulo'=>'required|max:255',
+            'descripcion'=>'required'
+        ]);*/
+        $ejemplo=Ejemplos::find($id);
+        $ejemplo->update($request->all());
+        return redirect('example/')->with('success','Ejemplo actualizado satisfactoriamente.');
     }
 
     /**
@@ -84,8 +95,10 @@ class EjemploController extends Controller
      * @param  \App\Models\Ejemplos  $ejemplo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ejemplos $ejemplo)
+    public function destroy(Request $request, $id)
     {
-        //
+        $ejemplo=Ejemplos::find($id);
+        $ejemplo->destroy($request->all());
+        return redirect('example/')->with('success','Ejemplo borrado satisfactoriamente.');
     }
 }
